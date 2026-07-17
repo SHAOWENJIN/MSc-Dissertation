@@ -39,6 +39,8 @@ To validate systemic stability, singularity avoidance, and contact efficiency, t
     └── assets/              # Underlying .stl meshes and surface textures for rendering
 ```
 
+---
+
 ## Installation & Dependencies
 ```
 Bash
@@ -48,11 +50,15 @@ git clone [https://github.com/your-username/your-repository-name.git](https://gi
 cd your-repository-name
 ```
 
+---
+
 # Install core dependencies
 ```
 pip install numpy matplotlib mujoco
 Note: If you are executing the simulation inside an SSH terminal or a headless server container, remember to configure your X11 forwarding window configurations accordingly.
 ```
+
+---
 
 ## How to Run & Results
 Execute the main simulation pipeline via the following command:
@@ -61,9 +67,6 @@ python run_climbing.py
 ```
 1. Terminal Telemetry Summary
 Upon termination, the script automatically parses the telemetry dictionary and prints out an academic Data Sheet for rapid paper/slides reporting:
-
-Plaintext
-
 
 ======================================================================
              KEY QUANTITATIVE METRICS FOR ACADEMIC REPORT

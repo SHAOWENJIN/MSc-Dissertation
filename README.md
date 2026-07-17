@@ -1,4 +1,3 @@
-# MSc-Dissertation
 # Zero-Gravity Quadrupedal Ladder Climbing Simulation via Pure Force-Control
 
 An academic-grade MuJoCo physics simulation repository investigating the locomotion dynamics and kinematic stability of a quadrupedal robot (Unitree Go2) modified with specialized micro-grippers for space-station ladder climbing under zero-gravity environments ($g = [0, 0, 0]^T$).
@@ -38,3 +37,45 @@ To validate systemic stability, singularity avoidance, and contact efficiency, t
     ├── scene.xml            # Combined world body file defining space station module and ladder rails
     ├── go2.xml              # Main robot asset containing joint constraints and motor ranges
     └── assets/              # Underlying .stl meshes and surface textures for rendering
+🛠️ Installation & Dependencies
+Ensure you have a fully functional Python environment (Python 3.8+) on a Linux/Ubuntu distribution.
+
+Bash
+
+
+# Clone this repository
+git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
+cd your-repository-name
+
+# Install core dependencies
+pip install numpy matplotlib mujoco
+Note: If you are executing the simulation inside an SSH terminal or a headless server container, remember to configure your X11 forwarding window configurations accordingly.
+
+🚀 How to Run & Results
+Execute the main simulation pipeline via the following command:
+
+Bash
+
+
+python run_climbing.py
+1. Terminal Telemetry Summary
+Upon termination, the script automatically parses the telemetry dictionary and prints out an academic Data Sheet for rapid paper/slides reporting:
+
+Plaintext
+
+
+======================================================================
+             KEY QUANTITATIVE METRICS FOR ACADEMIC REPORT
+======================================================================
+1. Net Forward Progress:               0.3947 m
+2. Peak Forward Velocity (Vx_max):     1.0205 m/s
+3. Maximum Lateral Drift (Peak Error):  0.0456 m
+4. Minimum Wrench Margin (Stability):   0.6957
+5. Mean Yoshikawa Manipulability:       0.012542
+======================================================================
+2. Automated Figure Generation
+The pipeline triggers a post-processing rendering process that automatically generates two high-resolution (300 DPI) analytical figures in your workspace directory:
+
+my_grasp_report.png: Evaluates contact-level parameters including Normal Interaction Forces, Friction Conical Surface Utilization (Slip Thresholds), and Actuator Core Torque Utilization limits.
+
+climbing_metrics_timeline.png: A professional 4-panel time-series figure detailing Net Progress, Lateral Self-alignment Drift, Dynamic Wrench Balance Bounds, and Singularity Avoidance Indices over the simulation timeline—perfect for insertion directly into progress report slides or dessertation appendices.

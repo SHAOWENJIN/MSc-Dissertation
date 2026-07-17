@@ -52,7 +52,7 @@ cd your-repository-name
 
 ---
 
-# Install core dependencies
+## Install core dependencies
 ```
 pip install numpy matplotlib mujoco
 Note: If you are executing the simulation inside an SSH terminal or a headless server container, remember to configure your X11 forwarding window configurations accordingly.
@@ -68,6 +68,7 @@ python run_climbing.py
 1. Terminal Telemetry Summary
 Upon termination, the script automatically parses the telemetry dictionary and prints out an academic Data Sheet for rapid paper/slides reporting:
 
+```
 ======================================================================
              KEY QUANTITATIVE METRICS FOR ACADEMIC REPORT
 ======================================================================
@@ -77,6 +78,8 @@ Upon termination, the script automatically parses the telemetry dictionary and p
 4. Minimum Wrench Margin (Stability):   0.6957
 5. Mean Yoshikawa Manipulability:       0.012542
 ======================================================================
+```
+
 2. Automated Figure Generation
 The pipeline triggers a post-processing rendering process that automatically generates two high-resolution (300 DPI) analytical figures in your workspace directory:
 

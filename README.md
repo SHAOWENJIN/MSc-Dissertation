@@ -4,7 +4,7 @@ An academic-grade MuJoCo physics simulation repository investigating the locomot
 
 ---
 
-## 🌌 Project Overview
+## Project Overview
 
 Locomotion in microgravity eliminates the stabilizing effects of a support polygon governed by weight. Instead, the robot must rely entirely on **Closed-Loop Kinematic Chains**, where active gripping forces (Gripping Wrench) and contact constraints govern systemic stability. 
 
@@ -14,7 +14,7 @@ This project implements a multi-body dynamic simulation framework in MuJoCo that
 
 ---
 
-## 📊 Key Academic Metrics
+## Key Academic Metrics
 
 To validate systemic stability, singularity avoidance, and contact efficiency, this framework extracts and logs **10 distinct physical indices** in real-time, categorized into four core academic panels:
 
@@ -25,7 +25,7 @@ To validate systemic stability, singularity avoidance, and contact efficiency, t
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```directory
 .
@@ -37,7 +37,8 @@ To validate systemic stability, singularity avoidance, and contact efficiency, t
     ├── scene.xml            # Combined world body file defining space station module and ladder rails
     ├── go2.xml              # Main robot asset containing joint constraints and motor ranges
     └── assets/              # Underlying .stl meshes and surface textures for rendering
-🛠️ Installation & Dependencies
+
+## Installation & Dependencies
 Ensure you have a fully functional Python environment (Python 3.8+) on a Linux/Ubuntu distribution.
 
 Bash
@@ -51,7 +52,7 @@ cd your-repository-name
 pip install numpy matplotlib mujoco
 Note: If you are executing the simulation inside an SSH terminal or a headless server container, remember to configure your X11 forwarding window configurations accordingly.
 
-🚀 How to Run & Results
+## How to Run & Results
 Execute the main simulation pipeline via the following command:
 
 Bash

@@ -1,6 +1,6 @@
-# Zero-Gravity Quadrupedal Ladder Climbing Simulation via Pure Force-Control
+# Investigating the Influence of Grasp Configuration on the Stability of a Multi-Limbed Robotic Platform in MuJoCo
 
-An academic-grade MuJoCo physics simulation repository investigating the locomotion dynamics and kinematic stability of a quadrupedal robot (Unitree Go2) modified with specialized micro-grippers for space-station ladder climbing under zero-gravity environments ($g = [0, 0, 0]^T$).
+A MuJoCo physics simulation repository investigating the locomotion dynamics and kinematic stability of a quadrupedal robot (Unitree Go2) modified with specialized micro-grippers for space-station ladder climbing under zero-gravity environments ($g = [0, 0, 0]^T$).
 
 ---
 
@@ -16,7 +16,7 @@ This project implements a multi-body dynamic simulation framework in MuJoCo that
 
 ## Key Academic Metrics
 
-To validate systemic stability, singularity avoidance, and contact efficiency, this framework extracts and logs **10 distinct physical indices** in real-time, categorized into four core academic panels:
+To validate systemic stability, singularity avoidance, and contact efficiency, this framework extracts and logs **10 distinct physical indices** in real-time, categorized into four parts:
 
 1. **Net Forward Progress & Forward Velocity ($V_x$):** Quantifies steady-state translation velocity and tracks the continuous acceleration/deceleration profiles across periodic gait phases.
 2. **Lateral Pose Drift (Self-Alignment Error):** Monitors state deviation along the lateral $Y$-axis. Verifies whether the passive/active gripper mechanics can damp out exponential drift under zero-g.
@@ -55,7 +55,6 @@ cd your-repository-name
 ## Install core dependencies
 ```
 pip install numpy matplotlib mujoco
-Note: If you are executing the simulation inside an SSH terminal or a headless server container, remember to configure your X11 forwarding window configurations accordingly.
 ```
 
 ---

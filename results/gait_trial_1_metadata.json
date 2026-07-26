@@ -1,0 +1,50 @@
+{
+  "trial_name": "gait_trial_1",
+  "sample_count": 5000,
+  "start_time": 0.002,
+  "end_time": 10.000000000000009,
+  "store_full_metrics": false,
+  "scalar_fields": null,
+  "metadata": {
+    "scene": "/home/student49/00Dissertation/code/scene.xml",
+    "controller": "gait",
+    "trial_id": "1",
+    "duration_limit": 10.0,
+    "effective_simulation": {
+      "timestep": 0.002,
+      "gravity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "gait_configuration": {
+      "frequency": 0.5,
+      "swing_amplitude": 0.2,
+      "push_amplitude": 0.15,
+      "stance_force": 5.0,
+      "release_force": -2.0,
+      "initialisation_duration": 1.5
+    },
+    "metric_configuration": {
+      "minimum_contact_force": 1e-06,
+      "slip_speed_threshold": 0.0001,
+      "maximum_friction_ratio": 0.8,
+      "maximum_pose_drift": 0.05,
+      "maximum_torque_ratio": 0.9,
+      "contact_loss_timeout": 0.05,
+      "success_hold_time": 0.25
+    },
+    "ladder_configuration": {
+      "rung_spacing": 0.25,
+      "ladder_width": 0.3,
+      "friction": 0.6,
+      "target_rung": "rung_11"
+    },
+    "initial_position": {
+      "x": -0.5,
+      "y": 0.005,
+      "z": 0.25
+    }
+  }
+}

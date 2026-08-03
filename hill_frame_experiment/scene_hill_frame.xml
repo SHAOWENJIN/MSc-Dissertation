@@ -1,0 +1,178 @@
+<mujoco model="go2 hill-frame rung-radius r150">
+  <option timestep="0.002" gravity="0 0 -7.848" cone="elliptic" impratio="100" />
+
+  <!-- This file is intended to live in:
+       ~/00Dissertation/code/hill_frame_experiment/
+       and uses the local go2_hill.xml copy with meshdir="../assets". -->
+  <include file="go2_hill.xml" />
+
+  <statistic center="0 0 0.15" extent="3.5" />
+
+  <visual>
+    <headlight diffuse="0.7 0.7 0.7"
+               ambient="0.25 0.25 0.25"
+               specular="0.15 0.15 0.15" />
+    <rgba haze="0.02 0.02 0.04 1" />
+    <global azimuth="-130" elevation="-18" />
+  </visual>
+
+  <asset>
+    <texture type="skybox"
+             builtin="gradient"
+             rgb1="0.005 0.005 0.015"
+             rgb2="0 0 0"
+             width="512"
+             height="3072" />
+
+    <material name="station_white" rgba="0.80 0.82 0.86 1" />
+    <material name="station_dark"  rgba="0.20 0.22 0.26 1" />
+    <material name="solar_blue"    rgba="0.03 0.10 0.28 1" />
+    <material name="earth_blue"    rgba="0.04 0.20 0.85 0.85" />
+    <material name="ladder_metal"  rgba="0.62 0.64 0.68 1" />
+    <material name="rung_orange"   rgba="0.85 0.40 0.08 1" />
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 5" dir="0 0 -1" directional="true" />
+
+    <!-- Overview camera for the full Hill-frame visual scene. -->
+    <camera name="hill_overview"
+            pos="4.2 -4.2 2.3"
+            xyaxes="0.707 0.707 0  -0.265 0.265 0.927"
+            mode="fixed" />
+
+    <!--
+      Local Hill-frame convention used in this experiment:
+        +x : ladder-climbing / along-track direction
+        +y : rung-axis direction
+        +z : local vertical away from Earth
+        -z : local vertical toward Earth
+
+      The MuJoCo world frame is the local Hill frame.
+      Earth is a visual reference only and does not collide.
+    -->
+    <body name="earth_reference" pos="0 0 -2.4">
+      <geom name="earth_visual"
+            type="sphere"
+            size="1.05"
+            material="earth_blue"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+    </body>
+
+    <!-- Hill-frame visual axes. -->
+    <body name="hill_frame_axes" pos="-1.45 -0.55 0.45">
+      <site name="hill_origin" type="sphere" size="0.025" rgba="1 1 1 1" />
+      <site name="hill_x_axis" type="capsule"
+            fromto="0 0 0 0.45 0 0" size="0.008" rgba="1 0.1 0.1 1" />
+      <site name="hill_y_axis" type="capsule"
+            fromto="0 0 0 0 0.45 0" size="0.008" rgba="0.1 1 0.1 1" />
+      <site name="hill_z_axis" type="capsule"
+            fromto="0 0 0 0 0 0.45" size="0.008" rgba="0.1 0.3 1 1" />
+    </body>
+
+    <!-- Station-like visual reference inspired by the supplied image.
+         It is intentionally non-colliding and does not alter robot dynamics. -->
+    <body name="orbital_station_visual" pos="0 0 -0.58">
+      <geom name="station_core"
+            type="cylinder"
+            size="0.28 1.10"
+            zaxis="1 0 0"
+            material="station_dark"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="station_truss_main"
+            type="box"
+            size="1.80 0.025 0.025"
+            pos="0 0 0.35"
+            material="station_white"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="station_truss_cross_left"
+            type="box"
+            size="0.025 0.85 0.025"
+            pos="-0.90 0 0.35"
+            material="station_white"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="station_truss_cross_right"
+            type="box"
+            size="0.025 0.85 0.025"
+            pos="0.90 0 0.35"
+            material="station_white"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="solar_left_front"
+            type="box"
+            size="0.38 0.65 0.012"
+            pos="-1.25 1.15 0.35"
+            material="solar_blue"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="solar_left_back"
+            type="box"
+            size="0.38 0.65 0.012"
+            pos="-1.25 -1.15 0.35"
+            material="solar_blue"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="solar_right_front"
+            type="box"
+            size="0.38 0.65 0.012"
+            pos="1.25 1.15 0.35"
+            material="solar_blue"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+
+      <geom name="solar_right_back"
+            type="box"
+            size="0.38 0.65 0.012"
+            pos="1.25 -1.15 0.35"
+            material="solar_blue"
+            contype="0"
+            conaffinity="0"
+            group="0" />
+    </body>
+
+    <!-- Physical ladder. Geometry and rung spacing are unchanged from the baseline. -->
+    <body name="ladder_structure" pos="-0.05 0 0">
+      <geom name="ladder_rail_front"
+            type="box"
+            size="1.5 0.01 0.01"
+            pos="0 0.15 -0.04"
+            material="ladder_metal" />
+
+      <geom name="ladder_rail_back"
+            type="box"
+            size="1.5 0.01 0.01"
+            pos="0 -0.15 -0.04"
+            material="ladder_metal" />
+
+      <geom name="rung_1"  type="cylinder" size="0.0150 0.15" pos="-1.125 0 -0.04" zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_2"  type="cylinder" size="0.0150 0.15" pos="-0.900 0 -0.04" zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_3"  type="cylinder" size="0.0150 0.15" pos="-0.675 0 -0.04" zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_4"  type="cylinder" size="0.0150 0.15" pos="-0.450 0 -0.04" zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_5"  type="cylinder" size="0.0150 0.15" pos="-0.225 0 -0.04" zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_6"  type="cylinder" size="0.0150 0.15" pos="0.000 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_7"  type="cylinder" size="0.0150 0.15" pos="0.225 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_8"  type="cylinder" size="0.0150 0.15" pos="0.450 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_9"  type="cylinder" size="0.0150 0.15" pos="0.675 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_10" type="cylinder" size="0.0150 0.15" pos="0.900 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+      <geom name="rung_11" type="cylinder" size="0.0150 0.15" pos="1.125 0 -0.04"  zaxis="0 1 0" material="rung_orange" />
+    </body>
+  </worldbody>
+</mujoco>
